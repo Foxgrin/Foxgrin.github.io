@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="sql-labs20">
+  <meta name="author" content="Somnus">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="sql-labs20"/>
+  <meta property="og:description" content="sql-labs20" />
+  <meta property="og:site_name" content="Somnus&#39;s blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Somnus&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Somnus's blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">sql-labs20</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/<your-github-username>">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Somnus</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-07-08</span>
+            <span class="time">21:12:08</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/sql-labs/">sql-labs</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/sql/">#sql</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>sql-labs20通关记录<a id="more"></a></p>
+<h2 id="sql-labs20"><a href="#sql-labs20" class="headerlink" title="sql-labs20"></a>sql-labs20</h2><p>今天的靶场是Less-20,这关涉及cookie,要深入理解的话我们就一行行分析源代码</p>
+<p><img src="/img/sql-labs20/1.png" alt=""></p>
+<p>首先，来到程序的第一个分支点，$_COOKIE这个变量是能获取到报文头部所包含的cookie字段其中的信息，我们可以分析出如果要执行这个if语句，则cookie的’uname’字段中是没有信息的。</p>
+<p><img src="/img/sql-labs20/2.png" alt=""></p>
+<p>那么网页首先显示的是跟前几个关卡相似的登录页面。<br>接下来来到第一个分支点里的又一个分支点</p>
+<p><img src="/img/sql-labs20/3.png" alt=""></p>
+<p>可以看出当我们在网页中的表单中提交用户名和账号信息时，则开始执行这个if语句</p>
+<p><img src="/img/sql-labs20/4.png" alt=""></p>
+<p>就开始查询数据库里的用户名和密码信息</p>
+<p><img src="/img/sql-labs20/5.png" alt=""></p>
+<p>并且将查询结果的’username’字段中的用户名信息赋值给$cookee</p>
+<p><img src="/img/sql-labs20/6.png" alt=""></p>
+<p>如果查询结果不为空</p>
+<p><img src="/img/sql-labs20/7.png" alt=""></p>
+<p>则设置将cookie中设置名为’uname’的字段，并给该字段赋值$cookee变量的值，也就是之前查询到的用户名信息，并且设置该字段的生存时间<br>如果查询结果为空，则返回一个查询失败的信息</p>
+<p><img src="/img/sql-labs20/8.png" alt=""></p>
+<p>也就是说当我们在网页的表单中输入用户名和密码时，当查询结果不为空时，则在cookie中设置字段值<br>我们用burp抓包看看报文的详细信息</p>
+<p><img src="/img/sql-labs20/9.png" alt=""></p>
+<p>我们先查询一下users表里的信息</p>
+<p><img src="/img/sql-labs20/10.png" alt=""></p>
+<p>接着输入一个users表中存在的用户名和密码</p>
+<p><img src="/img/sql-labs20/11.png" alt=""></p>
+<p>这是我们提交表单给服务器的POST报文，来看看服务器这时返回的信息是什么</p>
+<p><img src="/img/sql-labs20/12.png" alt=""></p>
+<p>可以看出服务器设置了cookie信息</p>
+<p><img src="/img/sql-labs20/13.png" alt=""></p>
+<p>并且返回这些信息，可见这就是一开始的登录页面加上</p>
+<p><img src="/img/sql-labs20/14.png" alt=""></p>
+<p>查询结果后返回的信息<br>那么我们放行这个请求报文，看看接下来发生什么</p>
+<p><img src="/img/sql-labs20/15.png" alt=""></p>
+<p>放行后出现了第二个请求报文，这是个GET请求报文，我们可以看出此时头部已经有了cookie信息，我们再来看看服务器的回应</p>
+<p><img src="/img/sql-labs20/16.png" alt=""></p>
+<p>我们再回头看看源代码，发现此时执行了第二个节点，此时cookie中的’uname’字段已经有了信息，则执行了else语句<br>这个else语句中又包含了一个节点</p>
+<p><img src="/img/sql-labs20/17.png" alt=""></p>
+<p>也就是当我们还未点击submit按钮时会执行这个if语句</p>
+<p>然后</p>
+<p><img src="/img/sql-labs20/18.png" alt=""></p>
+<p>返回一些信息</p>
+<p><img src="/img/sql-labs20/19.png" alt=""></p>
+<p>并且以cookee变量的值作为用户名进行数据库的查询<br>然后将查询到的信息输出出来，最后一行会出现一个submit按钮<br>接下来我们放行第二个报文</p>
+<p><img src="/img/sql-labs20/20.png" alt=""></p>
+<p>放行后可以看到网页发生了变化，也就是返回了还未提交submit时的信息<br>我们点击一下submit按钮，这时看看请求的报文格式</p>
+<p><img src="/img/sql-labs20/21.png" alt=""></p>
+<p>可以看出这是一个POST请求报文，这时还又cookie信息，我们再来看看服务器返回的报文</p>
+<p><img src="/img/sql-labs20/22.png" alt=""></p>
+<p>这时服务器发现cookie中的’expires’字段中的时间发生了变化，’uname’字段内容为空时，默认内容为deleted，并且返回</p>
+<p><img src="/img/sql-labs20/23.png" alt=""></p>
+<p>可见当我们点击submit按钮后执行了else语句</p>
+<p><img src="/img/sql-labs20/24.png" alt=""></p>
+<p>放行这个POST请求报文</p>
+<p><img src="/img/sql-labs20/25.png" alt=""></p>
+<p>又出现了一个GET请求报文，看出此时cookie信息已经被删除了</p>
+<p><img src="/img/sql-labs20/26.png" alt=""></p>
+<p>又回到了一开始的登录界面<br>这里就涉及了一个重定向“location”它的作用是不用用户输入网址，它会自动访问，一般是GET请求，所以我们之前能抓到两个请求报文，且网页最后显示是重定向后的最终页面</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
