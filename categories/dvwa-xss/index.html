@@ -6,7 +6,7 @@
     
     
     
-    <title>归档 | Somnus&#39;s blog</title>
+    <title>分类: dvwa-xss | Somnus&#39;s blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     
     <meta name="theme-color" content="#77AAFF">
@@ -41,7 +41,7 @@
     
     <meta property="og:type" content="website">
 <meta property="og:title" content="Somnus&#39;s blog">
-<meta property="og:url" content="https://Foxgrin.github.io/archives/page/2/index.html">
+<meta property="og:url" content="https://Foxgrin.github.io/categories/dvwa-xss/index.html">
 <meta property="og:site_name" content="Somnus&#39;s blog">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
@@ -88,14 +88,14 @@
                   </a>
               </li>
             
-              <li class="waves-block waves-effect active">
+              <li class="waves-block waves-effect">
                   <a href="/archives"  >
                     <i class="icon icon-lg icon-archives"></i>
                     <span>归 档</span><i class="icon icon-lg icon-caret-left"></i>
                   </a>
               </li>
             
-              <li class="waves-block waves-effect">
+              <li class="waves-block waves-effect active">
                   <a href="/categories"  >
                     <i class="icon icon-lg icon-th-list"></i>
                     <span>分 类</span><i class="icon icon-lg icon-caret-left"></i>
@@ -147,7 +147,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">归档</div>
+        <div class="flex-col header-title ellipsis">分类: dvwa-xss</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -164,7 +164,7 @@
         </a>
     </div>
 </header>
-<header class="content-header archives-header">
+<header class="content-header categories-header">
     
     
     <div class="container fade-scale">
@@ -174,7 +174,19 @@
             </h1>
             <h5 class="subtitle">
                 
-                    <h1 class="archivestitle">路漫漫其修远兮</h1>
+                    <h1 id="pagetitle" class="archivestitle"></h1>
+                    <script>
+                        if(location.href.indexOf('about')!=-1){
+                            pagetitle.textContent = '一个梦想努力成为大神的萌新';
+                        }else if(location.href.indexOf('tags')!=-1||location.href.indexOf('categories')!=-1){
+                            var a=location.href.substring(location.href.length-5,location.href.length-1);
+                            if(a==='tags'){
+                                pagetitle.textContent = '不积小流无以成江海';
+                            }else if(a==='ries'){
+                                pagetitle.textContent = '不积跬步无以至千里';
+                            }
+                        }
+                    </script>
                 
             </h5>
         </div>
@@ -184,23 +196,22 @@
 
 <div class="container body-wrap fade">
     
-
-    
+        
+        
+        <h5 class="tag-tip">
+            <i class="icon icon-tag"></i>
+            关于
+            <span style="color:rgb(100, 100, 100)">dvwa-xss</span>
+            共&nbsp;1&nbsp;篇文章</h5>
+        <div class="waterfall">
             
-            <h3 class="archive-separator">
-                <i class="icon icon-lg icon-folder-o"></i>&nbsp;&nbsp;
-                2018
-            </h3>
-            <div class="waterfall">
-    
-
-        <article class="archive-article" onclick="location.href='/posts/15069/'">
+                <article class="archive-article" onclick="location.href='/posts/52787/'">
     <div class="archive-article-date">
       
       <time class="my-post-time">
         <i class="icon icon-lg icon-file-text-o"></i>
         &nbsp;
-          07-09
+          2018-07-11
       </time>
     </div>
     <div class="archive-article-inner">
@@ -209,203 +220,23 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a href="/posts/15069/">sql-labs46-49</a>
+      <a href="/posts/52787/">dvwa-xss(reflected)</a>
     </h3>
   
 
 
 
       
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xss/">xss</a></li></ul>
 
     </div>
   </article>
-
+            
+        </div>
     
-
-        <article class="archive-article" onclick="location.href='/posts/5994/'">
-    <div class="archive-article-date">
-      
-      <time class="my-post-time">
-        <i class="icon icon-lg icon-file-text-o"></i>
-        &nbsp;
-          07-09
-      </time>
-    </div>
-    <div class="archive-article-inner">
-      
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a href="/posts/5994/">sql-labs38-45</a>
-    </h3>
-  
-
-
-
-      
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
-
-    </div>
-  </article>
-
-    
-
-        <article class="archive-article" onclick="location.href='/posts/56021/'">
-    <div class="archive-article-date">
-      
-      <time class="my-post-time">
-        <i class="icon icon-lg icon-file-text-o"></i>
-        &nbsp;
-          07-09
-      </time>
-    </div>
-    <div class="archive-article-inner">
-      
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a href="/posts/56021/">sql-labs29-37</a>
-    </h3>
-  
-
-
-
-      
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
-
-    </div>
-  </article>
-
-    
-
-        <article class="archive-article" onclick="location.href='/posts/38551/'">
-    <div class="archive-article-date">
-      
-      <time class="my-post-time">
-        <i class="icon icon-lg icon-file-text-o"></i>
-        &nbsp;
-          07-09
-      </time>
-    </div>
-    <div class="archive-article-inner">
-      
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a href="/posts/38551/">sql-labs23-28</a>
-    </h3>
-  
-
-
-
-      
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
-
-    </div>
-  </article>
-
-    
-
-        <article class="archive-article" onclick="location.href='/posts/47662/'">
-    <div class="archive-article-date">
-      
-      <time class="my-post-time">
-        <i class="icon icon-lg icon-file-text-o"></i>
-        &nbsp;
-          07-08
-      </time>
-    </div>
-    <div class="archive-article-inner">
-      
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a href="/posts/47662/">sql-labs20</a>
-    </h3>
-  
-
-
-
-      
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
-
-    </div>
-  </article>
-
-    
-
-        <article class="archive-article" onclick="location.href='/posts/34927/'">
-    <div class="archive-article-date">
-      
-      <time class="my-post-time">
-        <i class="icon icon-lg icon-file-text-o"></i>
-        &nbsp;
-          07-08
-      </time>
-    </div>
-    <div class="archive-article-inner">
-      
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a href="/posts/34927/">sql-labs17</a>
-    </h3>
-  
-
-
-
-      
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
-
-    </div>
-  </article>
-
-    
-
-        <article class="archive-article" onclick="location.href='/posts/35119/'">
-    <div class="archive-article-date">
-      
-      <time class="my-post-time">
-        <i class="icon icon-lg icon-file-text-o"></i>
-        &nbsp;
-          07-07
-      </time>
-    </div>
-    <div class="archive-article-inner">
-      
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a href="/posts/35119/">sql-labs14</a>
-    </h3>
-  
-
-
-
-      
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
-
-    </div>
-  </article>
-
-    
-    </div>
-
-    
-<nav id="page-nav">
-    <div class="inner">
-    <a class="extend prev" rel="prev" href="/archives/">上一页</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </div>
-</nav>
 
 </div>
+
 
         <footer class="footer">
     <div class="footer-content">
