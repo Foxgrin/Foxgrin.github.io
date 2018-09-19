@@ -6,7 +6,7 @@
     
     
     
-    <title>归档: 2018/9 | Somnus&#39;s blog</title>
+    <title>标签: ctf | Somnus&#39;s blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     
     <meta name="theme-color" content="#77AAFF">
@@ -41,7 +41,7 @@
     
     <meta property="og:type" content="website">
 <meta property="og:title" content="Somnus&#39;s blog">
-<meta property="og:url" content="https://Foxgrin.github.io/archives/2018/09/index.html">
+<meta property="og:url" content="https://Foxgrin.github.io/tags/ctf/page/2/index.html">
 <meta property="og:site_name" content="Somnus&#39;s blog">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
@@ -88,7 +88,7 @@
                   </a>
               </li>
             
-              <li class="waves-block waves-effect active">
+              <li class="waves-block waves-effect">
                   <a href="/archives"  >
                     <i class="icon icon-lg icon-archives"></i>
                     <span>归 档</span><i class="icon icon-lg icon-caret-left"></i>
@@ -102,7 +102,7 @@
                   </a>
               </li>
             
-              <li class="waves-block waves-effect">
+              <li class="waves-block waves-effect active">
                   <a href="/tags"  >
                     <i class="icon icon-lg icon-tags"></i>
                     <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
@@ -147,7 +147,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">归档</div>
+        <div class="flex-col header-title ellipsis">标签: ctf</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -164,7 +164,7 @@
         </a>
     </div>
 </header>
-<header class="content-header archives-header">
+<header class="content-header tags-header">
     
     
     <div class="container fade-scale">
@@ -174,7 +174,19 @@
             </h1>
             <h5 class="subtitle">
                 
-                    <h1 class="archivestitle">路漫漫其修远兮</h1>
+                    <h1 id="pagetitle" class="archivestitle"></h1>
+                    <script>
+                        if(location.href.indexOf('about')!=-1){
+                            pagetitle.textContent = '一个梦想努力成为大神的萌新';
+                        }else if(location.href.indexOf('tags')!=-1||location.href.indexOf('categories')!=-1){
+                            var a=location.href.substring(location.href.length-5,location.href.length-1);
+                            if(a==='tags'){
+                                pagetitle.textContent = '不积小流无以成江海';
+                            }else if(a==='ries'){
+                                pagetitle.textContent = '不积跬步无以至千里';
+                            }
+                        }
+                    </script>
                 
             </h5>
         </div>
@@ -182,25 +194,26 @@
 
 </header>
 
-<div class="container body-wrap fade">
-    
 
-    
+    <div class="container body-wrap fade">
+        
             
-            <h3 class="archive-separator">
-                <i class="icon icon-lg icon-folder-o"></i>&nbsp;&nbsp;
-                2018
-            </h3>
+            
+            <h5 class="tag-tip">
+                <i class="icon icon-tag"></i>
+                关于
+                <span style="color:rgb(100, 100, 100)">ctf</span>
+                共11篇文章
+            </h5>
             <div class="waterfall">
-    
-
-        <article class="archive-article" onclick="location.href='/posts/57375/'">
+            
+                <article class="archive-article" onclick="location.href='/posts/38711/'">
     <div class="archive-article-date">
       
       <time class="my-post-time">
         <i class="icon icon-lg icon-file-text-o"></i>
         &nbsp;
-          09-19
+          2018-07-31
       </time>
     </div>
     <div class="archive-article-inner">
@@ -209,7 +222,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a href="/posts/57375/">Python沙箱逃逸</a>
+      <a href="/posts/38711/">Bugkuctf-Web(1)</a>
     </h3>
   
 
@@ -220,127 +233,16 @@
 
     </div>
   </article>
+            
+            </div>
+        
 
-    
-
-        <article class="archive-article" onclick="location.href='/posts/15234/'">
-    <div class="archive-article-date">
-      
-      <time class="my-post-time">
-        <i class="icon icon-lg icon-file-text-o"></i>
-        &nbsp;
-          09-16
-      </time>
+<nav id="page-nav">
+    <div class="inner">
+    <a class="extend prev" rel="prev" href="/tags/ctf/">上一页</a><a class="page-number" href="/tags/ctf/">1</a><span class="page-number current">2</span>
     </div>
-    <div class="archive-article-inner">
-      
+</nav>
 
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a href="/posts/15234/">2018黑盾杯Web</a>
-    </h3>
-  
-
-
-
-      
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li></ul>
-
-    </div>
-  </article>
-
-    
-
-        <article class="archive-article" onclick="location.href='/posts/65109/'">
-    <div class="archive-article-date">
-      
-      <time class="my-post-time">
-        <i class="icon icon-lg icon-file-text-o"></i>
-        &nbsp;
-          09-13
-      </time>
-    </div>
-    <div class="archive-article-inner">
-      
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a href="/posts/65109/">实验吧Web</a>
-    </h3>
-  
-
-
-
-      
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li></ul>
-
-    </div>
-  </article>
-
-    
-
-        <article class="archive-article" onclick="location.href='/posts/11047/'">
-    <div class="archive-article-date">
-      
-      <time class="my-post-time">
-        <i class="icon icon-lg icon-file-text-o"></i>
-        &nbsp;
-          09-08
-      </time>
-    </div>
-    <div class="archive-article-inner">
-      
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a href="/posts/11047/">Python-flask</a>
-    </h3>
-  
-
-
-
-      
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
-
-    </div>
-  </article>
-
-    
-
-        <article class="archive-article" onclick="location.href='/posts/25445/'">
-    <div class="archive-article-date">
-      
-      <time class="my-post-time">
-        <i class="icon icon-lg icon-file-text-o"></i>
-        &nbsp;
-          09-04
-      </time>
-    </div>
-    <div class="archive-article-inner">
-      
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a href="/posts/25445/">网鼎杯第三场Web</a>
-    </h3>
-  
-
-
-
-      
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li></ul>
-
-    </div>
-  </article>
-
-    
-    </div>
-
-    
 </div>
 
         <footer class="footer">
