@@ -76,7 +76,7 @@
 <meta property="og:image" content="https://foxgrin.github.io/img/ISCC2019/25.png">
 <meta property="og:image" content="https://foxgrin.github.io/img/ISCC2019/26.png">
 <meta property="og:image" content="https://foxgrin.github.io/img/ISCC2019/27.png">
-<meta property="og:updated_time" content="2019-05-25T05:11:19.347Z">
+<meta property="og:updated_time" content="2019-05-25T05:14:05.776Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ISCC 2019 Writeup">
 <meta name="twitter:description" content="ctf">
@@ -188,7 +188,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -259,9 +259,9 @@
 <h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="web1"><a href="#web1" class="headerlink" title="web1"></a>web1</h3><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="\img\ISCC2019\29.png" alt="1558761066236" title="">
+                    <img src="\img\ISCC2019\29.png" alt="" title="">
                 </div>
-                <div class="image-caption">1558761066236</div>
+                <div class="image-caption"></div>
             </figure>
 <p>首先要求输入的<strong>value</strong>的<strong>ascii</strong>码不在可见范围之内，但是最后要求value经过chr拼接后的username为’w3lc0me_To_ISCC2019’</p>
 <p>php的chr函数会自动进行<strong>mod256</strong>，所以使用脚本：</p>
@@ -275,9 +275,9 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="\img\ISCC2019\17.png" alt="img" title="">
+                    <img src="\img\ISCC2019\17.png" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure>
 <p><strong>payload:password=0x91d</strong></p>
 <p>所以最后的payload：</p>
@@ -294,9 +294,9 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="\img\ISCC2019\18.png" alt="img" title="">
+                    <img src="\img\ISCC2019\18.png" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure>
 <p>在password_change.php中的$username是直接从session中取出的，也就是取出的username为admin’#</p>
 <p>拼接到sql语句中：</p>
@@ -308,16 +308,16 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="\img\ISCC2019\19.png" alt="img" title="">
+                    <img src="\img\ISCC2019\19.png" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure> 
 <h3 id="web4"><a href="#web4" class="headerlink" title="web4"></a>web4</h3><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="\img\ISCC2019\28.png" alt="1558760852242" title="">
+                    <img src="\img\ISCC2019\28.png" alt="" title="">
                 </div>
-                <div class="image-caption">1558760852242</div>
+                <div class="image-caption"></div>
             </figure>
 <p>考察parse_str<strong>变量覆盖</strong></p>
 <p>payload:<a href="http://39.100.83.188:8066/index.php?action=auth&amp;hashed_key=6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b&amp;key=1" target="_blank" rel="noopener">http://39.100.83.188:8066/index.php?action=auth&amp;hashed_key=6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b&amp;key=1</a></p>
@@ -451,9 +451,9 @@
 <h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="隐藏的信息"><a href="#隐藏的信息" class="headerlink" title="隐藏的信息"></a>隐藏的信息</h3><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="\img\ISCC2019\20.png" alt="img" title="">
+                    <img src="\img\ISCC2019\20.png" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure>
 <p>8进制转16进制，16进制转字符串，最后base64解密得flag</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"></span><br><span class="line">$s = <span class="string">"0126 062 0126 0163 0142 0103 0102 0153 0142 062 065 0154 0111 0121 0157 0113 0111 0105 0132 0163 0131 0127 0143 066 0111 0105 0154 0124 0121 060 0116 067 0124 0152 0102 0146 0115 0107 065 0154 0130 062 0116 0150 0142 0154 071 0172 0144 0104 0102 0167 0130 063 0153 0167 0144 0130 060 0113"</span>;</span><br><span class="line">$message = explode(<span class="string">" "</span>, $s);</span><br><span class="line">$m = <span class="string">""</span>;</span><br><span class="line"><span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;count($message);$i++)&#123;</span><br><span class="line">	$m = $m.base_convert($message[$i],<span class="number">8</span>,<span class="number">16</span>);</span><br><span class="line">&#125;</span><br><span class="line">$m = hex2bin($m);</span><br><span class="line"><span class="keyword">echo</span> base64_decode($m);</span><br><span class="line"></span><br><span class="line"> <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
@@ -462,17 +462,17 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="\img\ISCC2019\21.png" alt="img" title="">
+                    <img src="\img\ISCC2019\21.png" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure> 
 <p>根据<strong>倒立屋</strong>题目提示，flag就是IsCc_2019倒过来 </p>
-<p><img src="\img\ISCC2019\22.png" alt="img"> </p>
+<p><img src="\img\ISCC2019\22.png" alt=""> </p>
 <h3 id="Keyes’-secret"><a href="#Keyes’-secret" class="headerlink" title="Keyes’ secret"></a>Keyes’ secret</h3><p>键盘密码，网上有现成脚本</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">STR = <span class="string">"RFVGYHNWSXCDEWSXCVWSXCVTGBNMJUY,WSXZAQWDVFRQWERTYTRFVBTGBNMJUYXSWEFTYHNNBVCXSWERFTGBNMJUTYUIOJMWSXCDEMNBVCDRTGHUQWERTYIUYHNBVWSXCDETRFVBTGBNMJUMNBVCDRTGHUWSXTYUIOJMEFVT,QWERTYTRFVBGRDXCVBNBVCXSWERFTYUIOJMTGBNMJUMNBVCDRTGHUWSXCDEQWERTYTYUIOJMRFVGYHNWSXCDEQWERTYTRFVGWSXCVGRDXCVBCVGREDQWERTY(TRFVBTYUIOJMTRFVG),QWERTYGRDXCVBQWERTYTYUIOJMEFVTNBVCXSWERFWSXCDEQWERTYTGBNMJUYTRFVGQWERTYTRFVBMNBVCDRTGHUEFVTNBVCXSWERFTYUIOJMTGBNMJUYIUYHNBVNBVCXSWERFTGBNMJUYMNBVCDRTGHUTYUIOJM,QWERTYWSXIUYHNBVQWERTYGRDXCVBQWERTYTRFVBTGBNMJUYXSWEFTYHNNBVCXSWERFTGBNMJUTYUIOJMWSXCDEMNBVCDRTGHUQWERTYIUYHNBVWSXCDETRFVBTGBNMJUMNBVCDRTGHUWSXTYUIOJMEFVTQWERTYTRFVBTGBNMJUYXSWEFTYHNNBVCXSWERFWSXCDETYUIOJMWSXTYUIOJMWSXTGBNMJUYZAQWDVFR.QWERTYTRFVBTYUIOJMTRFVGQWERTYTRFVBTGBNMJUYZAQWDVFRTYUIOJMWSXCDEIUYHNBVTYUIOJMIUYHNBVQWERTYGRDXCVBMNBVCDRTGHUWSXCDEQWERTYTGBNMJUIUYHNBVTGBNMJUGRDXCVBWSXCVWSXCVEFVTQWERTYWSXCFEWSXCDEIUYHNBVWSXCVGREDZAQWDVFRWSXCDEWSXCFEQWERTYTYUIOJMTGBNMJUYQWERTYIUYHNBVWSXCDEMNBVCDRTGHUEFVGYWSXCDEQWERTYGRDXCVBIUYHNBVQWERTYGRDXCVBZAQWDVFRQWERTYWSXCDEWSXCFETGBNMJUTRFVBGRDXCVBTYUIOJMWSXTGBNMJUYZAQWDVFRGRDXCVBWSXCVQWERTYWSXCDERGNYGCWSXCDEMNBVCDRTGHUTRFVBWSXIUYHNBVWSXCDEQWERTYTYUIOJMTGBNMJUYQWERTYCVGREDWSXEFVGYWSXCDEQWERTYNBVCXSWERFGRDXCVBMNBVCDRTGHUTYUIOJMWSXTRFVBWSXNBVCXSWERFGRDXCVBZAQWDVFRTYUIOJMIUYHNBVQWERTYWSXCDERGNYGCNBVCXSWERFWSXCDEMNBVCDRTGHUWSXWSXCDEZAQWDVFRTRFVBWSXCDEQWERTYWSXZAQWDVFRQWERTYIUYHNBVWSXCDETRFVBTGBNMJUMNBVCDRTGHUWSXZAQWDVFRCVGREDQWERTYGRDXCVBQWERTYXSWEFTYHNGRDXCVBTRFVBRFVGYHNWSXZAQWDVFRWSXCDE,QWERTYGRDXCVBIUYHNBVQWERTYEFVGYWDCFTWSXCDEWSXCVWSXCVQWERTYGRDXCVBIUYHNBVQWERTYTRFVBTGBNMJUYZAQWDVFRWSXCFETGBNMJUTRFVBTYUIOJMWSXZAQWDVFRCVGREDQWERTYGRDXCVBZAQWDVFRWSXCFEQWERTYMNBVCDRTGHUWSXCDEGRDXCVBTRFVBTYUIOJMWSXZAQWDVFRCVGREDQWERTYTYUIOJMTGBNMJUYQWERTYTYUIOJMRFVGYHNWSXCDEQWERTYIUYHNBVTGBNMJUYMNBVCDRTGHUTYUIOJMQWERTYTGBNMJUYTRFVGQWERTYGRDXCVBTYUIOJMTYUIOJMGRDXCVBTRFVBQAZSCEIUYHNBVQWERTYTRFVGTGBNMJUYTGBNMJUZAQWDVFRWSXCFEQWERTYWSXZAQWDVFRQWERTYTYUIOJMRFVGYHNWSXCDEQWERTYMNBVCDRTGHUWSXCDEGRDXCVBWSXCVQWERTYEFVGYWDCFTTGBNMJUYMNBVCDRTGHUWSXCVWSXCFEQWERTY(WSX.WSXCDE.,QWERTYYHNMKJTGBNMJUCVGREDQWERTYYHNMKJTGBNMJUYTGBNMJUZAQWDVFRTYUIOJMEFVTQWERTYNBVCXSWERFMNBVCDRTGHUTGBNMJUYCVGREDMNBVCDRTGHUGRDXCVBXSWEFTYHNIUYHNBVQWERTYWSXZAQWDVFRQWERTYNBVCXSWERFMNBVCDRTGHUTGBNMJUYTRFVGWSXCDEIUYHNBVIUYHNBVWSXTGBNMJUYZAQWDVFRGRDXCVBWSXCVQWERTYIUYHNBVWSXCDETYUIOJMTYUIOJMWSXZAQWDVFRCVGREDIUYHNBV).QWERTYRFVGYHNWSXCDEMNBVCDRTGHUWSXCDEQWERTYGRDXCVBMNBVCDRTGHUWSXCDEQWERTYEFVTTGBNMJUYTGBNMJUMNBVCDRTGHUQWERTYTRFVGWSXCVGRDXCVBCVGRED&#123;WSXIUYHNBVTRFVBTRFVBQWERTYQAZSCEWSXCDEEFVTYHNMKJTGBNMJUYGRDXCVBMNBVCDRTGHUWSXCFEQWERTYTRFVBWSXNBVCXSWERFRFVGYHNWSXCDEMNBVCDRTGHU&#125;QWERTYMNBVCDRTGHUWSXCDEEFVGYWSXCDEMNBVCDRTGHUIUYHNBVWSXCDE-WSXCDEZAQWDVFRCVGREDWSXZAQWDVFRWSXCDEWSXCDEMNBVCDRTGHUWSXZAQWDVFRCVGRED,QWERTYZAQWDVFRWSXCDETYUIOJMEFVGYWDCFTTGBNMJUYMNBVCDRTGHUQAZSCEQWERTYIUYHNBVZAQWDVFRWSXTRFVGTRFVGWSXZAQWDVFRCVGRED,QWERTYNBVCXSWERFMNBVCDRTGHUTGBNMJUYTYUIOJMTGBNMJUYTRFVBTGBNMJUYWSXCVQWERTYGRDXCVBZAQWDVFRGRDXCVBWSXCVEFVTIUYHNBVWSXIUYHNBV,QWERTYIUYHNBVEFVTIUYHNBVTYUIOJMWSXCDEXSWEFTYHNQWERTYGRDXCVBWSXCFEXSWEFTYHNWSXZAQWDVFRWSXIUYHNBVTYUIOJMMNBVCDRTGHUGRDXCVBTYUIOJMWSXTGBNMJUYZAQWDVFR,QWERTYNBVCXSWERFMNBVCDRTGHUTGBNMJUYCVGREDMNBVCDRTGHUGRDXCVBXSWEFTYHNXSWEFTYHNWSXZAQWDVFRCVGRED,QWERTYGRDXCVBZAQWDVFRWSXCFEQWERTYTRFVBMNBVCDRTGHUEFVTNBVCXSWERFTYUIOJMGRDXCVBZAQWDVFRGRDXCVBWSXCVEFVTIUYHNBVWSXIUYHNBVQWERTYGRDXCVBMNBVCDRTGHUWSXCDEQWERTYGRDXCVBWSXCVWSXCVQWERTYIUYHNBVQAZSCEWSXWSXCVWSXCVIUYHNBVQWERTYEFVGYWDCFTRFVGYHNWSXTRFVBRFVGYHNQWERTYRFVGYHNGRDXCVBEFVGYWSXCDEQWERTYYHNMKJWSXCDEWSXCDEZAQWDVFRQWERTYMNBVCDRTGHUWSXCDEQAZXCDEWVTGBNMJUWSXMNBVCDRTGHUWSXCDEWSXCFEQWERTYYHNMKJEFVTQWERTYNBVCXSWERFMNBVCDRTGHUWSXTGBNMJUYMNBVCDRTGHUQWERTYTRFVBTYUIOJMTRFVGQWERTYTRFVBTGBNMJUYZAQWDVFRTYUIOJMWSXCDEIUYHNBVTYUIOJMIUYHNBVQWERTYGRDXCVBTYUIOJMQWERTYWSXCFEWSXCDETRFVGQWERTYTRFVBTGBNMJUYZAQWDVFR."</span></span><br><span class="line">STR = STR.replace(<span class="string">"WSXCDE"</span>,<span class="string">'e'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">"RFVGYHN"</span>,<span class="string">'h'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">"WSXCV"</span>,<span class="string">'l'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">"TGBNMJUY"</span>,<span class="string">'o'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">"TGBNMJU"</span>,<span class="string">'u'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">"GRDXCVB"</span>,<span class="string">'a'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">"CVGRED"</span>,<span class="string">'g'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">"QWERTYTRFVG"</span>,<span class="string">'f'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">"WSXCFE"</span>,<span class="string">'d'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">"IUYHNBV"</span>,<span class="string">'s'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">"QWERTY"</span>,<span class="string">' '</span>)</span><br><span class="line">STR = STR.replace(<span class="string">"TRFVB"</span>,<span class="string">'c'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">"QAZSCE"</span>,<span class="string">'k'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">"NBVCXSWERF"</span>,<span class="string">'p'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">"MNBVCDRTGHU"</span>,<span class="string">'r'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">"WSX"</span>,<span class="string">'i'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">"EFVT"</span>,<span class="string">'y'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">"YHNMKJ"</span>,<span class="string">'b'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">"ZAQWDVFR"</span>,<span class="string">'n'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">'XSWEFTYHNXSWEFTYHN'</span>,<span class="string">'m'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">'EFVGYWDCFT'</span>,<span class="string">'w'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">'TYUIOJM'</span>,<span class="string">'t'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">'QAZXCDEWV'</span>,<span class="string">'t'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">'XSWEFTYHN'</span>,<span class="string">'m'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">'EFVGY'</span>,<span class="string">'v'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">'RGNYGC'</span>,<span class="string">'x'</span>)</span><br><span class="line">STR = STR.replace(<span class="string">'TRFVG'</span>, <span class="string">'f'</span>)</span><br><span class="line">print((STR).upper())</span><br></pre></td></tr></table></figure>
 <p>flag：<code>FLAG{ISCC KEYBOARD CIPHER}</code></p>
 <h3 id="Aesop’s-secret"><a href="#Aesop’s-secret" class="headerlink" title="Aesop’s secret"></a>Aesop’s secret</h3><p>帧分析，8张图片拼成一张图片 </p>
-<p><img src="\img\ISCC2019\23.png" alt="img"> </p>
+<p><img src="\img\ISCC2019\23.png" alt=""> </p>
 <p>图片末尾最后一串：</p>
 <p>U2FsdGVkX19QwGkcgD0fTjZxgijRzQOGbCWALh4sRDec2w6xsY/ux53Vuj/AMZBDJ87qyZL5kAf1fmAH4Oe13Iu435bfRBuZgHpnRjTBn5+xsDHONiR3t0+Oa8yG/tOKJMNUauedvMyN4v4QKiFunw==</p>
 <p>BASE64解密后得到Salted__P开头的字符，推测是<strong>AES加密</strong></p>
@@ -494,9 +494,9 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="\img\ISCC2019\24.png" alt="img" title="">
+                    <img src="\img\ISCC2019\24.png" alt="" title="">
                 </div>
-                <div class="image-caption">img</div>
+                <div class="image-caption"></div>
             </figure>
 <p>flag：<code>IScC_2019</code></p>
 <h3 id="最危险的地方就是最安全的地方"><a href="#最危险的地方就是最安全的地方" class="headerlink" title="最危险的地方就是最安全的地方"></a>最危险的地方就是最安全的地方</h3><p>一个jpg文件，winhex打开发现里面有东西，修改文件后缀<strong>zip</strong>，解压后发现是一堆二维码</p>
@@ -572,9 +572,9 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="\img\ISCC2019\25.png" alt="1558717514532" title="">
+                    <img src="\img\ISCC2019\25.png" alt="" title="">
                 </div>
-                <div class="image-caption">1558717514532</div>
+                <div class="image-caption"></div>
             </figure>
 <p>猜测信息就包含在里面，我们需要将信息提取出来，根据题目提示<strong>欧鹏曦文</strong>猜测可能需要opencv脚本来提取，但是无奈没写过，只能肉眼识别了</p>
 <p>将多出来的这一部分的十六进制复制到notepad++里</p>
@@ -583,12 +583,12 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="\img\ISCC2019\26.png" alt="1558717890165" title="">
+                    <img src="\img\ISCC2019\26.png" alt="" title="">
                 </div>
-                <div class="image-caption">1558717890165</div>
+                <div class="image-caption"></div>
             </figure>
 <p>将10张图片都这样做，选择完整的一边截图然后拼接起来： </p>
-<p><img src="\img\ISCC2019\27.png" alt="1558717915526"> </p>
+<p><img src="\img\ISCC2019\27.png" alt=""> </p>
 <p>flag：<code>Flag={ISCC_is_so_interesting_!}</code></p>
 
         </div>
@@ -597,7 +597,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2019-05-25T05:11:19.347Z" itemprop="dateUpdated">2019-05-25 13:11:19</time>
+    Last updated: <time datetime="2019-05-25T05:14:05.776Z" itemprop="dateUpdated">2019-05-25 13:14:05</time>
 </span>
 
 
@@ -741,7 +741,7 @@
         </span>
         <br/>
 
-        <span class="license">このブログの内容物は<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        <span class="license">This blog is licensed under a <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
     </div>
 </footer>
 
