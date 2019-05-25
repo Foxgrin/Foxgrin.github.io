@@ -47,9 +47,11 @@
 <meta property="og:site_name" content="Somnus&#39;s blog">
 <meta property="og:description" content="ctf">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://foxgrin.github.io/img/ISCC2019/29.png">
 <meta property="og:image" content="https://foxgrin.github.io/img/ISCC2019/17.png">
 <meta property="og:image" content="https://foxgrin.github.io/img/ISCC2019/18.png">
 <meta property="og:image" content="https://foxgrin.github.io/img/ISCC2019/19.png">
+<meta property="og:image" content="https://foxgrin.github.io/img/ISCC2019/28.png">
 <meta property="og:image" content="https://foxgrin.github.io/img/ISCC2019/1.png">
 <meta property="og:image" content="https://foxgrin.github.io/img/ISCC2019/2.png">
 <meta property="og:image" content="https://foxgrin.github.io/img/ISCC2019/3.png">
@@ -74,11 +76,11 @@
 <meta property="og:image" content="https://foxgrin.github.io/img/ISCC2019/25.png">
 <meta property="og:image" content="https://foxgrin.github.io/img/ISCC2019/26.png">
 <meta property="og:image" content="https://foxgrin.github.io/img/ISCC2019/27.png">
-<meta property="og:updated_time" content="2019-05-25T04:56:15.940Z">
+<meta property="og:updated_time" content="2019-05-25T05:11:19.347Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ISCC 2019 Writeup">
 <meta name="twitter:description" content="ctf">
-<meta name="twitter:image" content="https://foxgrin.github.io/img/ISCC2019/17.png">
+<meta name="twitter:image" content="https://foxgrin.github.io/img/ISCC2019/29.png">
     
         <link rel="alternate" type="application/atom+xml" title="Somnus&#39;s blog" href="/atom.xml">
     
@@ -186,7 +188,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -254,7 +256,14 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>这个比赛虽然总体难度不大，但是不得不感叹河南大军恐怖如斯，不准点做题拿个百血真不容易，垂直上分的大佬频繁出现，说这个比赛是一年一度的py大赛还是有点道理的（滑稽）。但是不得不说，参加这比赛还是学到蛮多套路的，脑洞大开，以及让人摸不着头的flag提交格式emmm<a id="more"></a></p>
-<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="web1"><a href="#web1" class="headerlink" title="web1"></a>web1</h3><p>首先要求输入的<strong>value</strong>的<strong>ascii</strong>码不在可见范围之内，但是最后要求value经过chr拼接后的username为’w3lc0me_To_ISCC2019’</p>
+<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="web1"><a href="#web1" class="headerlink" title="web1"></a>web1</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="\img\ISCC2019\29.png" alt="1558761066236" title="">
+                </div>
+                <div class="image-caption">1558761066236</div>
+            </figure>
+<p>首先要求输入的<strong>value</strong>的<strong>ascii</strong>码不在可见范围之内，但是最后要求value经过chr拼接后的username为’w3lc0me_To_ISCC2019’</p>
 <p>php的chr函数会自动进行<strong>mod256</strong>，所以使用脚本：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">"w3lc0me_To_ISCC2019"</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">""</span></span><br><span class="line"></span><br><span class="line">s1 = <span class="string">"&amp;value[]="</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line"></span><br><span class="line">    value = ord(i) + <span class="number">256</span></span><br><span class="line"></span><br><span class="line">    payload = payload + s1 + str(value)</span><br><span class="line"></span><br><span class="line">print(payload)</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload:value[]=375&amp;value[]=307&amp;value[]=364&amp;value[]=355&amp;value[]=304&amp;value[]=365&amp;value[]=357&amp;value[]=351&amp;value[]=340&amp;value[]=367&amp;value[]=351&amp;value[]=329&amp;value[]=339&amp;value[]=323&amp;value[]=323&amp;value[]=306&amp;value[]=304&amp;value[]=305&amp;value[]=313</span><br></pre></td></tr></table></figure>
@@ -303,7 +312,14 @@
                 </div>
                 <div class="image-caption">img</div>
             </figure> 
-<h3 id="web4"><a href="#web4" class="headerlink" title="web4"></a>web4</h3><p>考察parse_str<strong>变量覆盖</strong></p>
+<h3 id="web4"><a href="#web4" class="headerlink" title="web4"></a>web4</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="\img\ISCC2019\28.png" alt="1558760852242" title="">
+                </div>
+                <div class="image-caption">1558760852242</div>
+            </figure>
+<p>考察parse_str<strong>变量覆盖</strong></p>
 <p>payload:<a href="http://39.100.83.188:8066/index.php?action=auth&amp;hashed_key=6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b&amp;key=1" target="_blank" rel="noopener">http://39.100.83.188:8066/index.php?action=auth&amp;hashed_key=6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b&amp;key=1</a></p>
 <p>flag{7he_rea1_f1@g_15_4ere}</p>
 <h3 id="web6"><a href="#web6" class="headerlink" title="web6"></a>web6</h3><p>抓包发现是<code>python</code>写的网站，一开始有点慌，不过这题不是查考察python</p>
@@ -581,7 +597,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-05-25T04:56:15.940Z" itemprop="dateUpdated">2019-05-25 12:56:15</time>
+    最終更新：<time datetime="2019-05-25T05:11:19.347Z" itemprop="dateUpdated">2019-05-25 13:11:19</time>
 </span>
 
 
@@ -725,7 +741,7 @@
         </span>
         <br/>
 
-        <span class="license">This blog is licensed under a <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        <span class="license">このブログの内容物は<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
     </div>
 </footer>
 
